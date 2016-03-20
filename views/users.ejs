@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= title%></title>
+	<style>
+		table{
+			border:1px solid #ececec;
+			border-collapse:collapse;
+		}
+		table tr td{
+			border-spacing: 0;
+			border: 1px solid #ececec;
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>Key</th>
+			<th>Value</th>
+		</tr>
+		<tr>
+			<td>Title</td>
+			<td colspan="2"><%= params.title %></td>
+		</tr>
+		<tr>
+			<td>URL</td>
+			<td colspan="2"><%= params.url %></td>
+		</tr>
+		<tr>
+			<td>UA</td>
+			<td colspan="2"><%= params.ua %></td>
+		</tr>
+		<tr>
+			<td>Cookie</td>
+			<td colspan="2"><%= params.cookie %></td>
+		</tr>
+		<tr>
+			<td>Cookie</td>
+			<td colspan="2"><%= params.timestamp %></td>
+		</tr>
+		<tr>
+			<td rowspan="2">Storage</td>
+			<td>sessionSorage</td>
+			<%if(params.ss){%>
+				<td>
+					<%for(var i=0;i<params.ss.length;i++){%>
+						<p>name：<%=params.ss[i].name%>，value：<%=params.ss[i].val%></p>	
+					<%}%>
+				</td>
+			<%}%>
+		</tr>
+		<tr>
+			<td>localStorage</td>
+			<%if(params.ls){%>
+				<td>
+					<%for(var i=0;i<params.ls.length;i++){%>
+						<p>name：<%=params.ls[i].name%>，value：<%=params.ls[i].val%></p>	
+					<%}%>	
+				</td>
+			<%}%>
+		</tr>
+	</table>
+</body>
+</html>
