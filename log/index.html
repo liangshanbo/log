@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo</title>
+</head>
+<body>
+	<!-- <script src="log.js"></script> -->
+	<script src="./zepto.min.js"></script>
+	<script>
+		$(function(){
+			console.log('DOMConentLoaded');
+			var log = {
+				storage:{
+					ss:window.sessionStorage?JSON.stringify(window.sessionStorage):'',
+					ls:window.localStorage?JSON.stringify(window.localStorage):''
+				},
+				title:document.title||'',
+				cookie:document.cookie||'',
+				url:location.href,
+				ua:navigator.userAgent,
+				timestamp:new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString()
+			};
+			window.onerror = function(msg,filename,line){
+				// $.post('./log.php',{error:{msg:msg,filename:filename,line:line}},function(data){
+				// 	document.write(data);
+				// });
+			};
+			$.post('./log.php',{log:log},function(data){
+				// console.log(JSON.parse(data));
+			});
+			$.getJSON('./log_view.php', function(data){
+			  	console.log(data)
+			})	
+		});
+	</script>
+</body>
+</html>
